@@ -22,7 +22,7 @@
 ```bash
 # Getting Started
 
-To obtain the required credentials from the Google Cloud Console and set up the OAuth 2.0 authentication for
+First Thing to do go to Google Cloud Console and set up the OAuth 2.0 authentication for
 your application, follow these steps:
 1. Go to the Google Cloud Console (https://console.developers.google.com) and create a new project. Provide a
    suitable name for your project and click on the "Create" button.
