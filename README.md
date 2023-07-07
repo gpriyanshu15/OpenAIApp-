@@ -83,6 +83,7 @@ npm start
 4.User-specific configuration: Making the code more flexible by allowing users to provide their own
   configuration options, such as email    filters or customized reply messages.
   These are some areas where the code can be improved, but overall, it provides implementation of
-  auto-reply functionality using the Gmail   API.
+  auto-reply functionality using the Gmail API.
+5.Time Monitoring: The code currently use randominterval function to generate seconds and in this code can be improved by adding cron jobs package to schedule email tasks 
 ```
 
