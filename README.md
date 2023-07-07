@@ -73,3 +73,16 @@ npm start
 
 <h3> <a href = "https://github.com/Sahil-Sayyad/Auto_reply_gmail_api_app"> CODE</a> </h3><br>
 
+```bash
+#note on areas where your code can be improved.
+1.Error handling: The code currently logs any errors that occur during the execution but does not
+ handle them in a more robust manner.
+2.Code efficiency: The code could be optimized to handle larger volumes of emails more efficiently.
+3.Security: Ensuring that sensitive information, such as client secrets and refresh tokens, are stored
+  securely and not exposed in the   code.
+4.User-specific configuration: Making the code more flexible by allowing users to provide their own
+ configuration options, such as email    filters or customized reply messages.
+ These are some areas where the code can be improved, but overall, it provides implementation of
+ auto-reply functionality using the Gmail   API.
+```
+
