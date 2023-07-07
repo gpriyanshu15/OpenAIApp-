@@ -57,7 +57,7 @@ your application, follow these steps:
 The easiest way to get started is to clone the repository:
 ```bash
 # Get the latest snapshot
-git clone https://github.com/Sahil-Sayyad/Contact-List-App.git
+git clone https://github.com/Sahil-Sayyad/Auto_reply_gmail_api_app.git
 
 # Install NPM dependencies
 npm install
