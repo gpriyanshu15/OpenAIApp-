@@ -1,4 +1,4 @@
-# Auto_reply_gmail_api_app using Node.js 
+# Auto Reply Gmail Bot using Node.js 
 ```bash
 #Description
 -This is a repository for Auto_reply_gmail_api_app App Developed using Node.js and Google APIs.
