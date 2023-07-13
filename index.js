@@ -60,6 +60,20 @@ async function checkEmailsAndSendReplies() {
           id: message.id,
         });
         // Extract the recipient email address and subject from the message headers.
+        /*const email = {
+        data: {
+          payload: {
+           headers: [
+          {
+          name: "From",
+          value: "johndoe@example.com"
+          }
+          ]
+          }
+        }
+      };
+        const fromHeader = email.data.payload.headers.find((header) => header.name === "From");
+        console.log(fromHeader.value); // johndoe@example.com*/
         const from = email.data.payload.headers.find(
           (header) => header.name === "From"
         );
@@ -69,18 +83,19 @@ async function checkEmailsAndSendReplies() {
         const Subject = email.data.payload.headers.find(
           (header) => header.name === "Subject"
         );
+        //who sends email extracted
         const From = from.value;
+        //who gets email extracted
         const toEmail = toHeader.value;
+        //subject of unread email
         const subject = Subject.value;
         console.log("email come From", From);
         console.log("to Email", toEmail);
-
         //check if the user already been replied to
         if (repliedUsers.has(From)) {
           console.log("Already replied to : ", From);
           continue;
         }
-
         // 2.send replies to Emails that have no prior replies
         // Check if the email has any replies.
         const thread = await gmail.users.threads.get({
