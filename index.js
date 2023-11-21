@@ -2,22 +2,19 @@ const { google } = require("googleapis");
 
 const {
   CLIENT_ID,
-  CLEINT_SECRET,
+  CLIENT_SECRET,
   REDIRECT_URI,
   REFRESH_TOKEN,
 } = require("./credentials");
 
-
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
-  CLEINT_SECRET,
+  CLIENT_SECRET,
   REDIRECT_URI
 );
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-
 const repliedUsers = new Set();
-
 
 async function checkEmailsAndSendReplies() {
   try {
@@ -37,7 +34,7 @@ async function checkEmailsAndSendReplies() {
           userId: "me",
           id: message.id,
         });
-         
+
         const from = email.data.payload.headers.find(
           (header) => header.name === "From"
         );
@@ -60,7 +57,7 @@ async function checkEmailsAndSendReplies() {
           console.log("Already replied to : ", From);
           continue;
         }
-        // 2.send replies to Emails that have no prior replies
+        // send replies to Emails that have no prior replies
         // Check if the email has any replies.
         const thread = await gmail.users.threads.get({
           userId: "me",
@@ -100,7 +97,6 @@ async function checkEmailsAndSendReplies() {
   }
 }
 
-//this function is basically convert string to base64EncodedEmail format
 async function createReplyRaw(from, to, subject) {
   const emailContent = `From: ${from}\nTo: ${to}\nSubject: ${subject}\n\nThank you for your message. i am  unavailable right now, but will respond as soon as possible...`;
   const base64EncodedEmail = Buffer.from(emailContent)
@@ -111,7 +107,6 @@ async function createReplyRaw(from, to, subject) {
   return base64EncodedEmail;
 }
 
-// 3.add a Label to the email and move the email to the label
 async function createLabelIfNeeded(labelName) {
   const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
   // Check if the label already exists.
@@ -136,12 +131,9 @@ async function createLabelIfNeeded(labelName) {
   return newLabel.data.id;
 }
 
-/*4.repeat this sequence of steps 1-3 in random intervals of 45 to 120 seconds*/
 function getRandomInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-//Setting Interval and calling main function in every interval
+
 setInterval(checkEmailsAndSendReplies, getRandomInterval(45, 120) * 1000);
-
-

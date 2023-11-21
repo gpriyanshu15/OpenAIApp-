@@ -1,6 +1,7 @@
-
-const CLIENT_ID = "Your Client Id";
-const CLEINT_SECRET = "Your Client Secret";
-const REDIRECT_URI = "https://developers.google.com/oauthplayground";
-const REFRESH_TOKEN ="Your Refresh Token";
-module.exports = { CLIENT_ID, CLEINT_SECRET, REDIRECT_URI, REFRESH_TOKEN };
+const CLIENT_ID =
+  "205751912026-pil2vu4fn65apn6tofke1jb6r9bi91nj.apps.googleusercontent.com";
+const CLIENT_SECRET = "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";
+const REDIRECT_URI = "http://localhost:3000/auth/callback";
+const REFRESH_TOKEN =
+  "1//048mbyiFfSWmlCgYIARAAGAQSNwF-L9IrThxbabXUFACa3HHHuSKYCTcvgOmU2iBJOmiKdb5xDQQeu--zJPJodydMnuwamSUFBfY";
+module.exports = { CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, REFRESH_TOKEN };
