@@ -54,7 +54,7 @@ your application, follow these steps:
 The easiest way to get started is to clone the repository:
 ```bash
 # Get the latest snapshot
-git clone https://github.com/gpriyanshu15/OpenAIApp-Assignment.git
+git clone https://github.com/gpriyanshu15/OpenAIApp-
 
 # Install NPM dependencies
 npm install
