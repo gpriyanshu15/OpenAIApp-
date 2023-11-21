@@ -1,23 +1,5 @@
-//imported required packages
-/*1.googleapis: This package is imported from the googleapis module and provides the necessary functionality to interact with various Google APIs, including the Gmail API.
-
-  2.OAuth2: The OAuth2 class from the google.auth module is used to authenticate the application and obtain an access token for making requests to the Gmail API. It handles token refresh and retrying requests if necessary.*/
-
 const { google } = require("googleapis");
 
-/*1.This id , secret and redirected uri obtained from the Google Cloud Console.
-    https://console.developers.google.com by creating project there and setting up project.
- 
-  2.This refreshtoken is generated from the redirected uri https://developers.google.com/  oauthplayground
-    and here authorized this https://mail.google.com scope api by email and in setting of scope api by putting client id and client secret then when authorizes done this generate 
-    authorization code .
-
-  3.Exchange authorization code for refresh token by clicking on exchange text. 
-
-  4.import the credentials.js file  
-
-  5.All the steps described in detail explaination available in readme.md check it .
- */
 const {
   CLIENT_ID,
   CLEINT_SECRET,
@@ -25,8 +7,7 @@ const {
   REFRESH_TOKEN,
 } = require("./credentials");
 
-//implemented the “Login with google” API here.
-//basically OAuth2 module allow to retrive an access token, refresh it and retry the request.
+
 const oAuth2Client = new google.auth.OAuth2(
   CLIENT_ID,
   CLEINT_SECRET,
@@ -34,13 +15,10 @@ const oAuth2Client = new google.auth.OAuth2(
 );
 oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
-/*here using new set() taken care of no double replies are sent to any email at any point. Every email that qualifies the criterion should be replied back with one and only one auto reply
 
-*/
-//keep track of users already replied to using repliedUsers
 const repliedUsers = new Set();
 
-//Step 1. check for new emails and sends replies .
+
 async function checkEmailsAndSendReplies() {
   try {
     const gmail = google.gmail({ version: "v1", auth: oAuth2Client });
@@ -59,21 +37,7 @@ async function checkEmailsAndSendReplies() {
           userId: "me",
           id: message.id,
         });
-        // Extract the recipient email address and subject from the message headers.
-        /*const email = {
-        data: {
-          payload: {
-           headers: [
-          {
-          name: "From",
-          value: "johndoe@example.com"
-          }
-          ]
-          }
-        }
-      };
-        const fromHeader = email.data.payload.headers.find((header) => header.name === "From");
-        console.log(fromHeader.value); // johndoe@example.com*/
+         
         const from = email.data.payload.headers.find(
           (header) => header.name === "From"
         );
@@ -136,9 +100,9 @@ async function checkEmailsAndSendReplies() {
   }
 }
 
-//this function is basically converte string to base64EncodedEmail format
+//this function is basically convert string to base64EncodedEmail format
 async function createReplyRaw(from, to, subject) {
-  const emailContent = `From: ${from}\nTo: ${to}\nSubject: ${subject}\n\nThank you for your message. i am  unavailable right now, but will respond as soon as possible...`;
+  const emailContent = `From: ${from}\nTo: ${to}\nSubject: ${subject}\n\nThank you for your message. i am  unavailable right now, but will respond as soon as possible...`;
   const base64EncodedEmail = Buffer.from(emailContent)
     .toString("base64")
     .replace(/\+/g, "-")
@@ -180,11 +144,4 @@ function getRandomInterval(min, max) {
 //Setting Interval and calling main function in every interval
 setInterval(checkEmailsAndSendReplies, getRandomInterval(45, 120) * 1000);
 
-/*note on areas where your code can be improved.
-  1.Error handling: The code currently logs any errors that occur during the execution but does not handle them in a more robust manner.
-  2.Code efficiency: The code could be optimized to handle larger volumes of emails more efficiently.
-  3.Security: Ensuring that sensitive information, such as client secrets and refresh tokens, are stored securely and not exposed in the code.
-  4.User-specific configuration: Making the code more flexible by allowing users to provide their own configuration options, such as email filters or customized reply messages.
-  These are some areas where the code can be improved, but overall, it provides implementation of auto-reply functionality using the Gmail API.
-  5.Time Monitoring: The code currently use randominterval function to generate seconds and in this code can be improved by adding cron jobs package to schedule email tasks 
-*/
+

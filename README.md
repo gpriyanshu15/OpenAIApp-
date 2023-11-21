@@ -54,7 +54,7 @@ your application, follow these steps:
 The easiest way to get started is to clone the repository:
 ```bash
 # Get the latest snapshot
-git clone https://github.com/Sahil-Sayyad/Auto_reply_gmail_api_app.git
+git clone https://github.com/gpriyanshu15/OpenAIApp-Assignment.git
 
 # Install NPM dependencies
 npm install
@@ -65,11 +65,6 @@ npm install googleapis nodemon
 # Then simply start your app
 npm start
 ```
-
-# LINKS
-
-<h3> <a href = "https://github.com/Sahil-Sayyad/Auto_reply_gmail_api_app"> CODE</a> </h3><br>
-
 
 note on areas where your code can be improved.
 1.Error handling: The code currently logs any errors that occur during the execution but does not

@@ -10,7 +10,7 @@
   "keywords": [
     "gmailapi"
   ],
-  "author": "Sahil Sayyad",
+  "author": "Priyanshu Gupta",
   "license": "ISC",
   "dependencies": {
     "googleapis": "^105.0.0",
